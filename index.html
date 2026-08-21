@@ -209,7 +209,7 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
         </div>
 
         <!-- Top CTA Button -->
-        <a href="https://t.me/+OOr8cIZn0k4xMWRl" target="_blank" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-extrabold py-3.5 px-6 rounded-2xl w-full text-base mb-6 active:scale-95 transition-transform">
+        <a href="https://t.me/+OOr8cIZn0k4xMWRl" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-extrabold py-3.5 px-6 rounded-2xl w-full text-base mb-6 active:scale-95 transition-transform">
             <i class="fa-paper-plane text-lg text-blue-200"></i>
             <span>JOIN TELEGRAM CHANNEL</span>
             <span class="text-lg">🚀</span>
@@ -270,7 +270,7 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
         </div>
 
         <!-- Main Bottom CTA Button -->
-        <a href="https://t.me/+OOr8cIZn0k4xMWRl" target="_blank" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-black py-4 px-6 rounded-2xl w-full text-lg mb-5 active:scale-95 transition-transform tracking-wider">
+        <a href="https://t.me/+OOr8cIZn0k4xMWRl" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-black py-4 px-6 rounded-2xl w-full text-lg mb-5 active:scale-95 transition-transform tracking-wider">
             <span class="text-yellow-300">⚡</span>
             <span>JOIN TELEGRAM NOW</span>
             <span class="text-xl">💎</span>
@@ -296,8 +296,19 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
 
     </div>
 
-    <!-- Starfield Animation Script -->
+    <!-- Starfield Animation & Pixel Tracking Script -->
     <script>
+        // Meta Pixel Real-time Subscribe Event Tracking
+        function trackSubscribeEvent() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Subscribe', {
+                    value: '0.00',
+                    currency: 'INR',
+                    predicted_ltv: '0.00'
+                });
+            }
+        }
+
         const canvas = document.getElementById('canvas-stars');
         const ctx = canvas.getContext('2d');
 
