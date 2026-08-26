@@ -152,6 +152,15 @@
         .check-icon-glow {
             filter: drop-shadow(0 0 6px rgba(34, 197, 94, 0.6));
         }
+
+        /* Modal Styles */
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-active {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
     </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -209,7 +218,7 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
         </div>
 
         <!-- Top CTA Button -->
-        <a href="https://t.me/+OOr8cIZn0k4xMWRl" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-extrabold py-3.5 px-6 rounded-2xl w-full text-base mb-6 active:scale-95 transition-transform">
+        <a href="https://t.me/+nVDjM325M5UxOTM1" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-extrabold py-3.5 px-6 rounded-2xl w-full text-base mb-6 active:scale-95 transition-transform">
             <i class="fa-paper-plane text-lg text-blue-200"></i>
             <span>JOIN TELEGRAM CHANNEL</span>
             <span class="text-lg">🚀</span>
@@ -270,7 +279,7 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
         </div>
 
         <!-- Main Bottom CTA Button -->
-        <a href="https://t.me/+OOr8cIZn0k4xMWRl" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-black py-4 px-6 rounded-2xl w-full text-lg mb-5 active:scale-95 transition-transform tracking-wider">
+        <a href="https://t.me/+nVDjM325M5UxOTM1" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-black py-4 px-6 rounded-2xl w-full text-lg mb-5 active:scale-95 transition-transform tracking-wider">
             <span class="text-yellow-300">⚡</span>
             <span>JOIN TELEGRAM NOW</span>
             <span class="text-xl">💎</span>
@@ -285,15 +294,84 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
         </div>
 
         <div class="border-t border-slate-800/80 pt-3">
-            <p class="text-[11px] text-slate-400 flex items-center justify-center gap-1.5 font-medium">
+            <p class="text-[11px] text-slate-400 flex items-center justify-center gap-1.5 font-medium mb-3">
                 <i class="fa-solid fa-lock text-blue-400"></i>
                 <span>Instant Access</span> • <span>5000+ Members</span> • <span>Daily Free Calls</span>
             </p>
+
+            <!-- Popups Trigger Links -->
+            <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-[11px] text-blue-400 mb-3 font-semibold">
+                <button onclick="openModal('modal-about')" class="hover:underline">About Us</button>
+                <span class="text-slate-600">•</span>
+                <button onclick="openModal('modal-terms')" class="hover:underline">Terms & Conditions</button>
+                <span class="text-slate-600">•</span>
+                <button onclick="openModal('modal-disclaimer')" class="hover:underline">Disclaimer</button>
+                <span class="text-slate-600">•</span>
+                <button onclick="openModal('modal-contact')" class="hover:underline">Contact Us</button>
+            </div>
+
             <p class="text-[10px] text-slate-500 mt-1 font-normal">
                 © PANKAJ BHARDWAJ — Market Intelligence
             </p>
         </div>
 
+    </div>
+
+    <!-- POPUP MODALS -->
+
+    <!-- Modal Base Design -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity"></div>
+
+    <!-- About Modal -->
+    <div id="modal-about" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
+        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
+            <button onclick="closeModal('modal-about')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-user"></i> About Us</h3>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2">
+                <p>Welcome to <strong>Pankaj Bhardwaj - Market Intelligence</strong>. We specialize in financial market observation, stock options research, and technical analysis.</p>
+                <p>Our aim is to empower traders with technical knowledge, key market indicators, and real-time observation setups for Nifty, BankNifty, and stock options.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="modal-terms" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
+        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
+            <button onclick="closeModal('modal-terms')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-file-contract"></i> Terms & Conditions</h3>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2">
+                <p>1. <strong>Educational Purpose:</strong> All updates, levels, and shared observations on our platform/channels are strictly for educational and informational purposes.</p>
+                <p>2. <strong>No Direct Financial Advice:</strong> Content provided here is not personalized financial or investment advice. Always perform your own research before trading.</p>
+                <p>3. <strong>Acceptance:</strong> By using this website and joining our community, you agree to adhere to our educational guidelines and terms.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer Modal -->
+    <div id="modal-disclaimer" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
+        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
+            <button onclick="closeModal('modal-disclaimer')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-rose-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</h3>
+            <div class="text-xs text-slate-300 leading-relaxed space-y-2">
+                <p><strong>Risk Warning:</strong> Trading in Stock Options, Nifty, and BankNifty involves substantial financial risk and is not suitable for all investors.</p>
+                <p>We are <strong>NOT SEBI registered</strong> advisers. Past performance shown or discussed does not guarantee future results. You are solely responsible for your investment/trading decisions and profits or losses incurred.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="modal-contact" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
+        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
+            <button onclick="closeModal('modal-contact')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Contact Us</h3>
+            <div class="text-xs text-slate-300 space-y-3">
+                <p>Have any questions or business queries? Reach out to us directly:</p>
+                <div class="bg-slate-900/60 p-3 rounded-xl border border-blue-900/50 space-y-2">
+                    <p class="flex items-center gap-2 text-slate-200"><i class="fa-solid fa-paper-plane text-blue-400"></i> <strong>Telegram Support:</strong> @PankajBhardwaj_Support</p>
+                    <p class="flex items-center gap-2 text-slate-200"><i class="fa-solid fa-envelope text-blue-400"></i> <strong>Email:</strong> support@pankajbhardwaj.com</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Starfield Animation & Pixel Tracking Script -->
@@ -309,6 +387,39 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
             }
         }
 
+        // Modal Functionality
+        function openModal(id) {
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('modal-backdrop').classList.add('modal-active');
+                const modal = document.getElementById(id);
+                modal.classList.add('modal-active');
+                modal.style.pointerEvents = 'auto';
+            }, 10);
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('modal-active');
+            modal.style.pointerEvents = 'none';
+            document.getElementById('modal-backdrop').classList.remove('modal-active');
+            setTimeout(() => {
+                document.getElementById('modal-backdrop').classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('modal-backdrop').addEventListener('click', () => {
+            document.querySelectorAll('.modal').forEach(m => {
+                m.classList.remove('modal-active');
+                m.style.pointerEvents = 'none';
+            });
+            document.getElementById('modal-backdrop').classList.remove('modal-active');
+            setTimeout(() => {
+                document.getElementById('modal-backdrop').classList.add('hidden');
+            }, 300);
+        });
+
+        // Stars Canvas Animation
         const canvas = document.getElementById('canvas-stars');
         const ctx = canvas.getContext('2d');
 
