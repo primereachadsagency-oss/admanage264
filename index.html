@@ -4,164 +4,261 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pankaj Bhardwaj - Market Intelligence</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131b2e;
+            --border-color: #1e293b;
+            --accent-blue: #2563eb;
+            --accent-hover: #1d4ed8;
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+        }
+
         * {
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background: #030712;
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            padding: 15px;
         }
 
-        /* Relaxing Space / Starry Background */
-        #canvas-stars {
+        .container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Profile Header */
+        .profile-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--accent-blue);
+            object-fit: cover;
+        }
+
+        .badge {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            background-color: var(--accent-blue);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            border: 2px solid var(--bg-color);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .tag-pill {
+            background-color: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.4);
+            color: #60a5fa;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Primary Call to Action Button */
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        /* Feature Card */
+        .card {
+            width: 100%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #e2e8f0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .features-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+
+        .check-icon {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px dashed var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: var(--text-sub);
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Stats Strip */
+        .stats-strip {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            font-size: 12px;
+            color: var(--text-sub);
+            padding: 5px 0;
+        }
+
+        /* Footer Nav Links */
+        .footer-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .footer-link {
+            color: #60a5fa;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: var(--text-sub);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        /* Glowing Radial Background Accents */
-        .bg-glow-top {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.35) 0%, rgba(99, 102, 241, 0.15) 50%, rgba(0,0,0,0) 80%);
-            border-radius: 50%;
-            filter: blur(40px);
-            z-index: 1;
-            pointer-events: none;
-            animation: pulseGlow 6s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { opacity: 0.5; transform: translateX(-50%) scale(0.9); }
-            100% { opacity: 0.95; transform: translateX(-50%) scale(1.15); }
-        }
-
-        /* Glassmorphism Card Styling */
-        .glass-card {
-            background: rgba(13, 20, 38, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-
-        .glass-inner-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(59, 130, 246, 0.25);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        /* Animated Glowing Pulse Button */
-        .btn-pulse-glow {
+        .modal-content {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
             position: relative;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: buttonGlow 2.5s infinite;
-            overflow: hidden;
         }
 
-        .btn-pulse-glow::before {
-            content: '';
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-body {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        .modal-body p {
+            margin-bottom: 10px;
+        }
+
+        .close-btn {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                60deg,
-                transparent,
-                rgba(255, 255, 255, 0.25),
-                transparent
-            );
-            transform: rotate(30deg);
-            animation: shineEffect 3.5s infinite;
-        }
-
-        @keyframes buttonGlow {
-            0% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.4), 0 0 30px rgba(37, 99, 235, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(59, 130, 246, 0.8), 0 0 50px rgba(37, 99, 235, 0.4); }
-            100% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.4), 0 0 30px rgba(37, 99, 235, 0.2); }
-        }
-
-        @keyframes shineEffect {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
-        }
-
-        /* Fade In Animation */
-        .fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Avatar Outer Ring Animation */
-        .avatar-ring {
-            background: linear-gradient(135deg, #3b82f6, #6366f1, #60a5fa);
-            background-size: 200% 200%;
-            animation: gradientBorder 4s ease infinite;
-        }
-
-        @keyframes gradientBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Float animation */
-        .floating-badge {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-4px); }
-        }
-
-        .check-icon-glow {
-            filter: drop-shadow(0 0 6px rgba(34, 197, 94, 0.6));
-        }
-
-        /* Modal Styles */
-        .modal {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .modal-active {
-            opacity: 1 !important;
-            visibility: visible !important;
+            top: 15px;
+            right: 15px;
+            font-size: 20px;
+            color: var(--text-sub);
+            cursor: pointer;
         }
     </style>
+
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -181,300 +278,121 @@ src="https://www.facebook.com/tr?id=901831099251236&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
     
 </head>
-<body class="flex justify-center items-center py-6 px-4">
+<body>
 
-    <!-- Starfield Canvas -->
-    <canvas id="canvas-stars"></canvas>
-
-    <!-- Glowing Background Aura -->
-    <div class="bg-glow-top"></div>
-
-    <!-- Main Mobile Container -->
-    <div class="relative z-10 w-full max-w-[390px] glass-card rounded-[32px] p-6 text-center fade-in-up">
-        
-        <!-- Profile Section -->
-        <div class="relative flex justify-center mb-4">
-            <div class="avatar-ring p-[3px] rounded-full shadow-2xl">
-                <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-[#030712] relative bg-slate-900">
-                    <img src="Pankaj11.jpg" 
-                         alt="Pankaj Bhardwaj" 
-                         class="w-full h-full object-cover">
-                </div>
-            </div>
-            <!-- Verified Badge -->
-            <div class="absolute bottom-0 right-1/2 translate-x-10 translate-y-1 bg-blue-600 text-white w-6 h-6 rounded-full flex items-center justify-center border-2 border-[#080d1a] text-[10px] shadow-lg">
-                <i class="fa-solid fa-check"></i>
-            </div>
+    <div class="container">
+        <div class="profile-container">
+            <img src="Pankaj11.jpg" alt="Pankaj Bhardwaj" class="profile-img">
+            <div class="badge">✓</div>
         </div>
 
-        <!-- Name & Title Header -->
-        <h1 class="text-2xl font-black tracking-tight text-white uppercase mb-2 drop-shadow-md">
-            PANKAJ BHARDWAJ
-        </h1>
+        <div class="title">PANKAJ BHARDWAJ</div>
+        <div class="tag-pill">NIFTY • BANKNIFTY • OPTIONS</div>
 
-        <!-- Badge Tag -->
-        <div class="inline-flex items-center gap-1.5 bg-blue-950/80 border border-blue-500/40 text-blue-300 text-[11px] font-bold px-4 py-1.5 rounded-full mb-6 floating-badge shadow-lg">
-            <span class="text-yellow-400">⚡</span> NIFTY • BANKNIFTY • OPTIONS <span class="text-yellow-400">⚡</span>
-        </div>
-
-        <!-- Top CTA Button -->
-        <a href="https://t.me/+nVDjM325M5UxOTM1" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-extrabold py-3.5 px-6 rounded-2xl w-full text-base mb-6 active:scale-95 transition-transform">
-            <i class="fa-paper-plane text-lg text-blue-200"></i>
-            <span>JOIN TELEGRAM CHANNEL</span>
-            <span class="text-lg">🚀</span>
+        <a href="https://t.me/+OOr8cIZn0k4xMWRl" class="btn-primary">
+            <span>🚀 JOIN TELEGRAM CHANNEL</span>
         </a>
 
-        <!-- Features Inner Glass Box -->
-        <div class="glass-inner-card rounded-2xl p-5 mb-6 text-left relative overflow-hidden">
-            <div class="flex items-center gap-2 mb-4 border-b border-blue-900/40 pb-3">
-                <span class="text-xl">📊</span>
-                <h2 class="text-sm font-extrabold text-blue-100 tracking-wide uppercase">
-                    NIFTY BANKNIFTY & STOCK OPTIONS
-                </h2>
-            </div>
-
-            <!-- List Features -->
-            <ul class="space-y-3.5 text-sm text-slate-200 font-semibold mb-5">
-                <li class="flex items-start gap-3">
-                    <span class="flex gap-0.5 text-emerald-400 text-base check-icon-glow">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <i class="fa-solid fa-circle-check"></i>
-                    </span>
-                    <span class="text-slate-100 leading-snug">Get up to <strong class="text-emerald-400 font-bold">100-300 Points</strong> Daily</span>
+        <div class="card">
+            <div class="card-title">📊 Market Intelligence & Analysis</div>
+            
+            <ul class="features-list">
+                <li class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Daily Index & Stock Market Updates</span>
                 </li>
-                <li class="flex items-start gap-3">
-                    <span class="flex gap-0.5 text-emerald-400 text-base check-icon-glow">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <i class="fa-solid fa-circle-check"></i>
-                    </span>
-                    <span class="text-slate-100 leading-snug"><strong class="text-emerald-400 font-bold">80-90%</strong> High Accuracy Calls</span>
+                <li class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Educational Chart Analysis & Patterns</span>
                 </li>
-                <li class="flex items-start gap-3">
-                    <span class="flex gap-0.5 text-emerald-400 text-base check-icon-glow">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <i class="fa-solid fa-circle-check"></i>
-                    </span>
-                    <span class="text-slate-100 leading-snug">3-4 Observational Calls Daily</span>
+                <li class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>FII / DII Data & Market Sentiment Reports</span>
                 </li>
-                <li class="flex items-start gap-3">
-                    <span class="flex gap-0.5 text-emerald-400 text-base check-icon-glow">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <i class="fa-solid fa-circle-check"></i>
-                    </span>
-                    <span class="text-slate-100 leading-snug">3 Daily Best Trades For Everyone</span>
+                <li class="feature-item">
+                    <span class="check-icon">✓</span>
+                    <span>Observational Market Levels For Traders</span>
                 </li>
             </ul>
 
-            <!-- Notice Highlights -->
-            <div class="space-y-2">
-                <div class="bg-blue-950/60 border border-blue-500/30 rounded-xl p-2.5 text-center text-xs text-blue-200 font-bold flex items-center justify-center gap-2">
-                    <span>📣</span> Disclaimer: DAILY FREE DEMO CALL <span class="text-emerald-400">✅</span>
-                </div>
-
-                <div class="bg-rose-950/40 border border-rose-500/30 rounded-xl p-2.5 text-center text-[11px] text-rose-200 font-bold flex items-center justify-center gap-1.5">
-                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-                    <span>LIVE STOCK ANALYSIS • MARKET UPDATES • FII/DII DATA</span>
-                </div>
+            <div class="info-box">
+                <b>Disclaimer:</b> Content shared is strictly for educational and informational purposes only. We are not SEBI registered.
             </div>
         </div>
 
-        <!-- Main Bottom CTA Button -->
-        <a href="https://t.me/+nVDjM325M5UxOTM1" target="_blank" onclick="trackSubscribeEvent()" class="btn-pulse-glow flex items-center justify-center gap-2.5 text-white font-black py-4 px-6 rounded-2xl w-full text-lg mb-5 active:scale-95 transition-transform tracking-wider">
-            <span class="text-yellow-300">⚡</span>
-            <span>JOIN TELEGRAM NOW</span>
-            <span class="text-xl">💎</span>
+        <a href="https://t.me/+OOr8cIZn0k4xMWRl" class="btn-primary">
+            <span>⚡ ACCESS TELEGRAM COMMUNITY 💎</span>
         </a>
 
-        <!-- Meta Pixel Active Tag -->
-        <div class="inline-flex items-center gap-2 bg-slate-900/80 border border-blue-800/40 text-blue-300 text-[11px] px-3.5 py-1.5 rounded-full mb-4 font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Meta Pixel Active</span>
-            <span class="text-slate-500">•</span>
-            <span class="text-slate-400">ID: 901831099251236</span>
+        <div class="stats-strip">
+            <span>🔒 Educational Content</span>
+            <span>•</span>
+            <span>👥 Active Community</span>
+            <span>•</span>
+            <span>📈 Daily Updates</span>
         </div>
 
-        <div class="border-t border-slate-800/80 pt-3">
-            <p class="text-[11px] text-slate-400 flex items-center justify-center gap-1.5 font-medium mb-3">
-                <i class="fa-solid fa-lock text-blue-400"></i>
-                <span>Instant Access</span> • <span>5000+ Members</span> • <span>Daily Free Calls</span>
-            </p>
-
-            <!-- Popups Trigger Links -->
-            <div class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-[11px] text-blue-400 mb-3 font-semibold">
-                <button onclick="openModal('modal-about')" class="hover:underline">About Us</button>
-                <span class="text-slate-600">•</span>
-                <button onclick="openModal('modal-terms')" class="hover:underline">Terms & Conditions</button>
-                <span class="text-slate-600">•</span>
-                <button onclick="openModal('modal-disclaimer')" class="hover:underline">Disclaimer</button>
-                <span class="text-slate-600">•</span>
-                <button onclick="openModal('modal-contact')" class="hover:underline">Contact Us</button>
-            </div>
-
-            <p class="text-[10px] text-slate-500 mt-1 font-normal">
-                © PANKAJ BHARDWAJ — Market Intelligence
-            </p>
+        <div class="footer-nav">
+            <span class="footer-link" onclick="openModal('about')">About Us</span>
+            <span class="footer-link" onclick="openModal('terms')">Terms & Conditions</span>
+            <span class="footer-link" onclick="openModal('privacy')">Privacy Policy</span>
+            <span class="footer-link" onclick="openModal('disclaimer')">Disclaimer</span>
+            <span class="footer-link" onclick="openModal('contact')">Contact Us</span>
         </div>
 
-    </div>
-
-    <!-- POPUP MODALS -->
-
-    <!-- Modal Base Design -->
-    <div id="modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity"></div>
-
-    <!-- About Modal -->
-    <div id="modal-about" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
-        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
-            <button onclick="closeModal('modal-about')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-user"></i> About Us</h3>
-            <div class="text-xs text-slate-300 leading-relaxed space-y-2">
-                <p>Welcome to <strong>Pankaj Bhardwaj - Market Intelligence</strong>. We specialize in financial market observation, stock options research, and technical analysis.</p>
-                <p>Our aim is to empower traders with technical knowledge, key market indicators, and real-time observation setups for Nifty, BankNifty, and stock options.</p>
-            </div>
+        <div class="copyright">
+            © Pankaj Bhardwaj — Market Intelligence. All Rights Reserved.
         </div>
     </div>
 
-    <!-- Terms Modal -->
-    <div id="modal-terms" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
-        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
-            <button onclick="closeModal('modal-terms')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-file-contract"></i> Terms & Conditions</h3>
-            <div class="text-xs text-slate-300 leading-relaxed space-y-2">
-                <p>1. <strong>Educational Purpose:</strong> All updates, levels, and shared observations on our platform/channels are strictly for educational and informational purposes.</p>
-                <p>2. <strong>No Direct Financial Advice:</strong> Content provided here is not personalized financial or investment advice. Always perform your own research before trading.</p>
-                <p>3. <strong>Acceptance:</strong> By using this website and joining our community, you agree to adhere to our educational guidelines and terms.</p>
-            </div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-title" class="modal-header">Title</div>
+            <div id="modal-body" class="modal-body">Content goes here...</div>
         </div>
     </div>
 
-    <!-- Disclaimer Modal -->
-    <div id="modal-disclaimer" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
-        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
-            <button onclick="closeModal('modal-disclaimer')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="text-lg font-bold text-rose-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</h3>
-            <div class="text-xs text-slate-300 leading-relaxed space-y-2">
-                <p><strong>Risk Warning:</strong> Trading in Stock Options, Nifty, and BankNifty involves substantial financial risk and is not suitable for all investors.</p>
-                <p>We are <strong>NOT SEBI registered</strong> advisers. Past performance shown or discussed does not guarantee future results. You are solely responsible for your investment/trading decisions and profits or losses incurred.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div id="modal-contact" class="modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible opacity-0 pointer-events-none">
-        <div class="glass-card bg-[#0b1329] border border-blue-500/30 rounded-2xl p-6 w-full max-w-md max-h-[80vh] overflow-y-auto text-left relative">
-            <button onclick="closeModal('modal-contact')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Contact Us</h3>
-            <div class="text-xs text-slate-300 space-y-3">
-                <p>Have any questions or business queries? Reach out to us directly:</p>
-                <div class="bg-slate-900/60 p-3 rounded-xl border border-blue-900/50 space-y-2">
-                    <p class="flex items-center gap-2 text-slate-200"><i class="fa-solid fa-paper-plane text-blue-400"></i> <strong>Telegram Support:</strong> @PankajBhardwaj_Support</p>
-                    <p class="flex items-center gap-2 text-slate-200"><i class="fa-solid fa-envelope text-blue-400"></i> <strong>Email:</strong> support@pankajbhardwaj.com</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Starfield Animation & Pixel Tracking Script -->
     <script>
-        // Meta Pixel Real-time Subscribe Event Tracking
-        function trackSubscribeEvent() {
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Subscribe', {
-                    value: '0.00',
-                    currency: 'INR',
-                    predicted_ltv: '0.00'
-                });
+        const modalData = {
+            about: {
+                title: "About Us",
+                content: "<p>Welcome to Pankaj Bhardwaj Market Intelligence. We provide daily market analysis, technical updates, and educational insights regarding Nifty, BankNifty, and Stock Options to help traders understand market trends better.</p>"
+            },
+            terms: {
+                title: "Terms & Conditions",
+                content: "<p>By accessing our channel or platform, you agree to these terms. All updates provided are strictly for educational and information purposes. We do not offer guaranteed returns or personal financial advice.</p>"
+            },
+            privacy: {
+                title: "Privacy Policy",
+                content: "<p>We respect your privacy. We do not sell, rent, or trade your personal information with third parties. Any analytical pixels used are solely for performance tracking and user experience improvement.</p>"
+            },
+            disclaimer: {
+                title: "Disclaimer",
+                content: "<p>Stock market trading and options trading involve substantial risk of loss and are not suitable for every investor. We are NOT SEBI registered financial advisors. Please consult a certified financial advisor before making any investment decisions.</p>"
+            },
+            contact: {
+                title: "Contact Us",
+                content: "<p>For any queries, support, or complaints, please contact us via Telegram or email us at: <b>support@yourdomain.com</b></p>"
+            }
+        };
+
+        function openModal(key) {
+            document.getElementById('modal-title').innerText = modalData[key].title;
+            document.getElementById('modal-body').innerHTML = modalData[key].content;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
             }
         }
-
-        // Modal Functionality
-        function openModal(id) {
-            document.getElementById('modal-backdrop').classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('modal-backdrop').classList.add('modal-active');
-                const modal = document.getElementById(id);
-                modal.classList.add('modal-active');
-                modal.style.pointerEvents = 'auto';
-            }, 10);
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('modal-active');
-            modal.style.pointerEvents = 'none';
-            document.getElementById('modal-backdrop').classList.remove('modal-active');
-            setTimeout(() => {
-                document.getElementById('modal-backdrop').classList.add('hidden');
-            }, 300);
-        }
-
-        document.getElementById('modal-backdrop').addEventListener('click', () => {
-            document.querySelectorAll('.modal').forEach(m => {
-                m.classList.remove('modal-active');
-                m.style.pointerEvents = 'none';
-            });
-            document.getElementById('modal-backdrop').classList.remove('modal-active');
-            setTimeout(() => {
-                document.getElementById('modal-backdrop').classList.add('hidden');
-            }, 300);
-        });
-
-        // Stars Canvas Animation
-        const canvas = document.getElementById('canvas-stars');
-        const ctx = canvas.getContext('2d');
-
-        let width, height;
-        let stars = [];
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            initStars();
-        }
-
-        function initStars() {
-            stars = [];
-            const count = Math.floor((width * height) / 3000);
-            for (let i = 0; i < count; i++) {
-                stars.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    radius: Math.random() * 1.5 + 0.3,
-                    alpha: Math.random(),
-                    speed: Math.random() * 0.015 + 0.005,
-                    twinkleDir: Math.random() > 0.5 ? 1 : -1,
-                    color: ['#ffffff', '#a5f3fc', '#c7d2fe', '#fef08a'][Math.floor(Math.random() * 4)]
-                });
-            }
-        }
-
-        function animateStars() {
-            ctx.clearRect(0, 0, width, height);
-
-            stars.forEach(star => {
-                star.alpha += star.speed * star.twinkleDir;
-                if (star.alpha >= 0.9) star.twinkleDir = -1;
-                if (star.alpha <= 0.15) star.twinkleDir = 1;
-
-                star.y -= star.speed * 15;
-                if (star.y < 0) {
-                    star.y = height;
-                    star.x = Math.random() * width;
-                }
-
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = star.color;
-                ctx.globalAlpha = Math.max(0, Math.min(1, star.alpha));
-                ctx.fill();
-            });
-
-            requestAnimationFrame(animateStars);
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        animateStars();
     </script>
 </body>
 </html>
